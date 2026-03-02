@@ -1,0 +1,24 @@
+---
+title: "Independent data analysis"
+author: "Harsimran Ghai"
+date: "2026-03-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Identify a dataset to work on 
+I am interested in myocardial infarction and therefore I choose a dataset containing risk factors for myocardial infarction (heart attack) from kaggle website. This dataset is based on chinese population. 
+
+The link to the datset is as follows: https://www.kaggle.com/datasets/ankushpanday2/heart-attack-risk-dataset-of-china
+
+# Statistical Analysis Plan
+
+My goal using this dataset is as follows:
+1. Developing a Binary logistic regression model to predict heart attack among the chinese population and evaluating the model performance using cross validation approach
+2. Doing Cluster analysis to identify unique cluster of heart attack chinese population based on the risk factors.
+
+```{r}
+data<-read.csv(heart_attack_china.csv)
+```
