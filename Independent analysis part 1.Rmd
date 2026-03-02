@@ -27,9 +27,9 @@ My goal using this dataset is as follows:
 The stages of analysis are as follows
 
 ## Data Wrangling
-    -Loading the dataset and examine the structure of variables
-    -Checking for missing and duplicate data
-    -Correct the formatting of the data set
+  -Loading the dataset and examine the structure of variables
+  -Checking for missing and duplicate data
+  -Correct the formatting of the data set
 
 ## Descriptive Analysis
   - Calculating the measure of central tendancy and measure of dispersion.
@@ -45,24 +45,25 @@ The stages of analysis are as follows
   - Building a model using the dependent variable that is heart attack (Binary in nature:0/1) and the predictors variables (see below).
   - Will use stepwise regression method to remove the variables that are not contributing to the prediction of heart attack.
   
-    Assumptions underlying the Binary Logistic regression will be checked to make sure the model is robust. 
+### Assumptions
+Assumptions underlying the Binary Logistic regression will be checked to make sure the model is robust. 
         
         
-        1.Outcome: The dependent variable is binary in nature.
+1.Outcome: The dependent variable is binary in nature.
             
-        2. Absence of perfect seperation: It will be checked using the scatter plot of dependent variables vs the prdictors.
+2. Absence of perfect seperation: It will be checked using the scatter plot of dependent variables vs the prdictors.
+          
+3. Absence of Multicollinearity: Variance inflation factors will be used. Any variable having VIF >5 will be the cause of concern.
             
-        3. Absence of Multicollinearity: Variance inflation factors will be used. Any variable having VIF >5 will be the cause of concern.
+4. Linearity: Box tidwell test will be used to analyze the linearity of continuous variables with logit function
             
-        4. Linearity: Box tidwell test will be used to analyze the linearity of continuous variables with logit function
+5. Outliers investigation.
             
-        5. Outliers investigation.
-            
-        6. Independence of residuals
+6. Independence of residuals
         
 ## Binary Logistic regression with up-sampling 
-Given only 12% of the people in this data set has heart attack, we will try to up sample the people with heart attack and compare the two model performance.
-All the assumption will be checked for this model as well.
+  Given only 12% of the people in this data set has heart attack, we will try to up sample the people with heart attack and compare the two model performance.
+  All the assumption will be checked for this model as well.
 
 
 # Variable Information

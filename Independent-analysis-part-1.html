@@ -604,9 +604,9 @@ with the primary model that does not have up-sampling.</li>
 <p>The stages of analysis are as follows</p>
 <div id="data-wrangling" class="section level2">
 <h2>Data Wrangling</h2>
-<pre><code>-Loading the dataset and examine the structure of variables
--Checking for missing and duplicate data
--Correct the formatting of the data set</code></pre>
+<p>-Loading the dataset and examine the structure of variables -Checking
+for missing and duplicate data -Correct the formatting of the data
+set</p>
 </div>
 <div id="descriptive-analysis" class="section level2">
 <h2>Descriptive Analysis</h2>
@@ -626,27 +626,29 @@ dispersion.</li>
 <div id="binary-logistic-regression-without-up-sampling" class="section level2">
 <h2>Binary Logistic Regression without up-sampling</h2>
 <ul>
-<li><p>Splitting the data into testing (70%) and training data
-(30%)</p></li>
-<li><p>Building a model using the dependent variable that is heart
-attack (Binary in nature:0/1) and the predictors variables (see
-below).</p></li>
-<li><p>Will use stepwise regression method to remove the variables that
-are not contributing to the prediction of heart attack.</p>
+<li>Splitting the data into testing (70%) and training data (30%)</li>
+<li>Building a model using the dependent variable that is heart attack
+(Binary in nature:0/1) and the predictors variables (see below).</li>
+<li>Will use stepwise regression method to remove the variables that are
+not contributing to the prediction of heart attack.</li>
+</ul>
+<div id="assumptions" class="section level3">
+<h3>Assumptions</h3>
 <p>Assumptions underlying the Binary Logistic regression will be checked
 to make sure the model is robust.</p>
-<pre><code>1.Outcome: The dependent variable is binary in nature.
-
-2. Absence of perfect seperation: It will be checked using the scatter plot of dependent variables vs the prdictors.
-
-3. Absence of Multicollinearity: Variance inflation factors will be used. Any variable having VIF &gt;5 will be the cause of concern.
-
-4. Linearity: Box tidwell test will be used to analyze the linearity of continuous variables with logit function
-
-5. Outliers investigation.
-
-6. Independence of residuals</code></pre></li>
-</ul>
+<p>1.Outcome: The dependent variable is binary in nature.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Absence of perfect seperation: It will be checked using the
+scatter plot of dependent variables vs the prdictors.</p></li>
+<li><p>Absence of Multicollinearity: Variance inflation factors will be
+used. Any variable having VIF &gt;5 will be the cause of
+concern.</p></li>
+<li><p>Linearity: Box tidwell test will be used to analyze the linearity
+of continuous variables with logit function</p></li>
+<li><p>Outliers investigation.</p></li>
+<li><p>Independence of residuals</p></li>
+</ol>
+</div>
 </div>
 <div id="binary-logistic-regression-with-up-sampling" class="section level2">
 <h2>Binary Logistic regression with up-sampling</h2>
