@@ -9,16 +9,433 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # Identify a dataset to work on 
+
 I am interested in myocardial infarction and therefore I choose a dataset containing risk factors for myocardial infarction (heart attack) from kaggle website. This dataset is based on chinese population. 
 
 The link to the datset is as follows: https://www.kaggle.com/datasets/ankushpanday2/heart-attack-risk-dataset-of-china
 
-# Statistical Analysis Plan
+# Gaols of the analysis
 
 My goal using this dataset is as follows:
-1. Developing a Binary logistic regression model to predict heart attack among the chinese population and evaluating the model performance using cross validation approach
-2. Doing Cluster analysis to identify unique cluster of heart attack chinese population based on the risk factors.
+
+1. Developing a Binary logistic regression model to predict heart attack among the chinese population and evaluating the model performance using cross validation approach.
+2. Up-sample the Heart attack sample and build the model and compare it with the primary model that does not have up-sampling.
+
+
+# Statistical Analysis Plan
+
+The stages of analysis are as follows
+
+## Data Wrangling
+    -Loading the dataset and examine the structure of variables
+    -Checking for missing and duplicate data
+    -Correct the formatting of the data set
+
+## Descriptive Analysis
+  - Calculating the measure of central tendancy and measure of dispersion.
+  - Calculating frequency and proportion for categorical variables
+  
+## Data Visualisation
+  - Bar Chart
+  - Scatter plot
+
+
+## Binary Logistic Regression without up-sampling
+  - Splitting the data into testing (70%) and training data (30%)
+  - Building a model using the dependent variable that is heart attack (Binary in nature:0/1) and the predictors variables (see below).
+  - Will use stepwise regression method to remove the variables that are not contributing to the prediction of heart attack.
+  
+    Assumptions underlying the Binary Logistic regression will be checked to make sure the model is robust. 
+        
+        
+        1.Outcome: The dependent variable is binary in nature.
+            
+        2. Absence of perfect seperation: It will be checked using the scatter plot of dependent variables vs the prdictors.
+            
+        3. Absence of Multicollinearity: Variance inflation factors will be used. Any variable having VIF >5 will be the cause of concern.
+            
+        4. Linearity: Box tidwell test will be used to analyze the linearity of continuous variables with logit function
+            
+        5. Outliers investigation.
+            
+        6. Independence of residuals
+        
+## Binary Logistic regression with up-sampling 
+Given only 12% of the people in this data set has heart attack, we will try to up sample the people with heart attack and compare the two model performance.
+All the assumption will be checked for this model as well.
+
+
+# Variable Information
+
+## Dependent Variable
+
+1. **Heart attack**  
+    Binary: "Yes" = no heart attack, "No" = heart attack
+
+## Independent Variables
+
+1. **Age** – Continuous
+2. **Blood Pressure** – Continuous
+3. **CVD Risk Score** – Continuous
+4. **Hypertension** – Binary
+5. **Diabetes** – Binary
+6. **Obesity** – Binary
+7. **Cholesterol** – Categorical (High, Normal, Low)
+8. **Air Pollution Exposure** – Categorical (High, Medium, Low)
+9. **Physical Activity** – Categorical (High, Medium, Low)
+10. **Diet Score** – Categorical (Poor, Moderate, Healthy)
+11. **Stress Level** – Categorical (Low, Medium, High)
+12. **Alcohol Consumption** – Binary
+13. **Family History CVD** – Binary
+14. **Healthcare Access** – Categorical (Poor, Moderate, Good)
+15. **Rural or Urban** – Binary
+16. **Hospital Availability** – Categorical (Low, Medium, High)
+17. **TCM Use** – Binary
+18. **Employment Status** – Categorical (Employed, Unemployed, Retired)
+19. **Education Level** – Categorical (None, Primary, Secondary, Higher)
+20. **Income Level** – Categorical (Low, Middle, High)
+21. **Chronic Kidney Disease** – Binary
+22. **Previous Heart Attack** – Binary
+
+# Data Wrangling
 
 ```{r}
-data<-read.csv(heart_attack_china.csv)
+# Loading the data
+data<-read.csv("heart_attack_china.csv")
 ```
+
+```{r}
+# Loading the Packages
+library(tidyverse)
+library(tidymodels)
+library(reportRmd)
+library(sjPlot)
+library(plotly)
+library(psych)
+library(parallel)
+library(finalfit)
+library(gtsummary)
+library(mlbench)
+library(vip)
+library(rsample)
+library(tune)
+library(recipes)
+library(yardstick)
+library(parsnip)
+library(glmnet)
+library(themis)
+library(corrr)
+library(performance)
+library(utils)
+library(see)
+library(forestmodel)
+```
+
+# Taking a look into data set
+
+```{r}
+glimpse(data)
+```
+
+This dataset has a total of 28 variables and a sample size of 239,266
+
+# Checking duplicates
+
+```{r}
+sum(duplicated(data))
+```
+
+No duplicated observation were observed in this dataset.
+
+# Checking the missing data
+
+```{r}
+any(is.na(data))
+```
+No missing data was found in this data set, so we don't need to do anything for the missing data.
+
+# Checking the structure in the data set
+
+```{r}
+str(data)
+```
+
+# Changing the Structure of variables
+
+```{r}
+data <- data%>%mutate(across(c( Gender,
+                                Smoking_Status,
+                                Hypertension,
+                                Diabetes,
+                                Obesity,
+                                Cholesterol_Level,
+                                Air_Pollution_Exposure,
+                                Physical_Activity,
+                                Diet_Score,
+                                Stress_Level,
+                                Alcohol_Consumption,
+                                Family_History_CVD,
+                                Healthcare_Access,
+                                Rural_or_Urban,
+                                Hospital_Availability,
+                                TCM_Use,
+                                Employment_Status,
+                                Education_Level,
+                                Income_Level,
+                                Chronic_Kidney_Disease,
+                                Previous_Heart_Attack,
+                                Heart_Attack
+                            
+),~ as.factor(.)))
+```
+
+# Descriptive Analysis
+
+```{r}
+rm_covsum(
+  data = data,
+                        covs = c('Age',
+                                'Blood_Pressure',
+                                'CVD_Risk_Score',
+                                'Hypertension',
+                                'Diabetes',
+                                'Obesity',
+                                'Cholesterol_Level',
+                                'Air_Pollution_Exposure',
+                                'Physical_Activity',
+                                'Diet_Score',
+                                'Stress_Level',
+                                'Alcohol_Consumption',
+                                'Family_History_CVD',
+                                'Healthcare_Access',
+                                'Rural_or_Urban',
+                                'Hospital_Availability',
+                                'TCM_Use',
+                                'Employment_Status',
+                                'Education_Level',
+                                'Income_Level',
+                                'Chronic_Kidney_Disease',
+                                'Previous_Heart_Attack',
+                                'Heart_Attack')
+)
+```
+
+# Bar Graphs
+```{r}
+ggplot(data, aes(x = Diabetes, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Diabetes by Disease",
+    x = "Diabetes",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x =Hypertension , fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Hypertension by Disease",
+    x = "Hypertension",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x =Obesity , fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Obesity by Disease",
+    x = "Obesity",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x =Cholesterol_Level , fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Cholesterol_Level by Disease",
+    x = "Cholesterol_Level",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Air_Pollution_Exposure, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Air_Pollution_Exposure by Disease",
+    x = "Air_Pollution_Exposure",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Physical_Activity, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Physical_Activity by Disease",
+    x = "Physical_Activity",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Diet_Score, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Diet_Score by Disease",
+    x = "Diet_Score",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Stress_Level, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Stress_Level by Disease",
+    x = "Stress_Level",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Alcohol_Consumption, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Alcohol_Consumption by Disease",
+    x = "Alcohol_Consumption",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Family_History_CVD, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Family_History_CVD by Heart_Attack",
+    x = "Family_History_CVD",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Healthcare_Access, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Healthcare_Access by Heart_Attack",
+    x = "Healthcare_Access",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = Rural_or_Urban, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Rural_or_Urban by Heart_Attack",
+    x = "Rural_or_Urban",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Hospital_Availability, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Hospital_Availability by Heart_Attack",
+    x = "Hospital_Availability",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = TCM_Use, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "TCM_Use by Heart_Attack",
+    x = "TCM_Use",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Employment_Status, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Employment_Status by Heart_Attack",
+    x = "Employment_Status",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Education_Level, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Education_Level by Heart_Attack",
+    x = "Education_Level",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Income_Level, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Income_Level by Heart_Attack",
+    x = "Income_Level",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+```{r}
+ggplot(data, aes(x = Chronic_Kidney_Disease, fill = Heart_Attack)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Chronic_Kidney_Disease by Heart_Attack",
+    x = "Chronic_Kidney_Disease",
+    y = "Count",
+    fill = "Heart_Attack"
+  ) +
+  theme_minimal() 
+```
+
+
+
