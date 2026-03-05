@@ -18,8 +18,7 @@ The link to the datset is as follows: https://www.kaggle.com/datasets/ankushpand
 
 My goal using this dataset is as follows:
 
-1. Developing a Binary logistic regression model to predict heart attack among the chinese population and evaluating the model performance using cross validation approach.
-2. Up-sample the Heart attack sample and build the model and compare it with the primary model that does not have up-sampling.
+Develop the best model to predict the heart attack using the below mentioned predictor. I will be using random forest and binary logistic regression, as my outcome variable is binary in nature.
 
 
 # Statistical Analysis Plan
@@ -32,40 +31,24 @@ The stages of analysis are as follows
   -Correct the formatting of the data set
 
 ## Descriptive Analysis
-  - Calculating the measure of central tendancy and measure of dispersion.
+  - Calculating the measure of central tendancy and measure of dispersion for continuous data.
   - Calculating frequency and proportion for categorical variables
   
 ## Data Visualisation
   - Bar Chart
-  - Scatter plot
+  - Box Plots
 
 
-## Binary Logistic Regression without up-sampling
+## Binary Logistic Regression
   - Splitting the data into testing (70%) and training data (30%)
   - Building a model using the dependent variable that is heart attack (Binary in nature:0/1) and the predictors variables (see below).
-  - Will use stepwise regression method to remove the variables that are not contributing to the prediction of heart attack.
-  
-### Assumptions
-Assumptions underlying the Binary Logistic regression will be checked to make sure the model is robust. 
-        
-        
-1.Outcome: The dependent variable is binary in nature.
-            
-2. Absence of perfect seperation: It will be checked using the scatter plot of dependent variables vs the prdictors.
-          
-3. Absence of Multicollinearity: Variance inflation factors will be used. Any variable having VIF >5 will be the cause of concern.
-            
-4. Linearity: Box tidwell test will be used to analyze the linearity of continuous variables with logit function
-            
-5. Outliers investigation.
-            
-6. Independence of residuals
-        
-## Binary Logistic regression with up-sampling 
-  Given only 12% of the people in this data set has heart attack, we will try to up sample the people with heart attack and compare the two model performance.
-  All the assumption will be checked for this model as well.
+  - Checking the model performance on the testing data (Cross validation).
 
 
+## Classifiication Tree
+Classification tree model will be built using the below mentioned predictors to predictor heart attack.
+
+Both models will be compared by creating the confusion matrix and calculating the associated measures (Sensitivity, specificity, accuracy, etc.) to select the best model.
 # Variable Information
 
 ## Dependent Variable
@@ -438,5 +421,35 @@ ggplot(data, aes(x = Chronic_Kidney_Disease, fill = Heart_Attack)) +
   theme_minimal() 
 ```
 
+```{r}
+ggplot(data, aes(x = Heart_Attack, y = Age)) +
+  geom_boxplot() +
+  labs(
+    x = "Heart Attack Status",
+    y = "Age",
+    title = "Distribution of Age by Heart Attack Status"
+  ) +
+  theme_minimal()
+```
 
+```{r}
+ggplot(data, aes(x = Heart_Attack, y = Blood_Pressure)) +
+  geom_boxplot() +
+  labs(
+    x = "Heart Attack Status",
+    y = "Blood Pressure",
+    title = "Distribution of Blood Pressure by Heart Attack Status"
+  ) +
+  theme_minimal()
+```
 
+```{r}
+ggplot(data, aes(x = Heart_Attack, y = CVD_Risk_Score)) +
+  geom_boxplot() +
+  labs(
+    x = "Heart Attack Status",
+    y = "CVD Risk Scores",
+    title = "Distribution of CVD Risk Scores by Heart Attack Status"
+  ) +
+  theme_minimal()
+```
