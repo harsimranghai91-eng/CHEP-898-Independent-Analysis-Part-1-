@@ -209,10 +209,10 @@ rm_covsum(
 ggplot(data, aes(x = Diabetes, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Diabetes by Disease",
+    title = "Diabetes by Heart Attack",
     x = "Diabetes",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -221,10 +221,10 @@ ggplot(data, aes(x = Diabetes, fill = Heart_Attack)) +
 ggplot(data, aes(x =Hypertension , fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Hypertension by Disease",
+    title = "Hypertension by Heart Attack",
     x = "Hypertension",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -233,10 +233,10 @@ ggplot(data, aes(x =Hypertension , fill = Heart_Attack)) +
 ggplot(data, aes(x =Obesity , fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Obesity by Disease",
+    title = "Obesity by Heart Attack",
     x = "Obesity",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -245,10 +245,10 @@ ggplot(data, aes(x =Obesity , fill = Heart_Attack)) +
 ggplot(data, aes(x =Cholesterol_Level , fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Cholesterol_Level by Disease",
-    x = "Cholesterol_Level",
+    title = "Cholesterol Level by Heart Attack ",
+    x = "Cholesterol Level",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -257,10 +257,10 @@ ggplot(data, aes(x =Cholesterol_Level , fill = Heart_Attack)) +
 ggplot(data, aes(x = Air_Pollution_Exposure, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Air_Pollution_Exposure by Disease",
-    x = "Air_Pollution_Exposure",
+    title = "Air Pollution Exposure by Heart Attack",
+    x = "Air Pollution Exposure",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -269,10 +269,10 @@ ggplot(data, aes(x = Air_Pollution_Exposure, fill = Heart_Attack)) +
 ggplot(data, aes(x = Physical_Activity, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Physical_Activity by Disease",
-    x = "Physical_Activity",
+    title = "Physical Activity by Heart Attack",
+    x = "Physical Activity",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -281,10 +281,10 @@ ggplot(data, aes(x = Physical_Activity, fill = Heart_Attack)) +
 ggplot(data, aes(x = Diet_Score, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Diet_Score by Disease",
-    x = "Diet_Score",
+    title = "Diet_Score by Heart Attack",
+    x = "Diet Score",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -293,10 +293,10 @@ ggplot(data, aes(x = Diet_Score, fill = Heart_Attack)) +
 ggplot(data, aes(x = Stress_Level, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Stress_Level by Disease",
-    x = "Stress_Level",
+    title = "Stress_Level by Heart Attack",
+    x = "Stress Level",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -305,10 +305,10 @@ ggplot(data, aes(x = Stress_Level, fill = Heart_Attack)) +
 ggplot(data, aes(x = Alcohol_Consumption, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Alcohol_Consumption by Disease",
-    x = "Alcohol_Consumption",
+    title = "Alcohol_Consumption by Heart Attack",
+    x = "Alcohol Consumption",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -317,10 +317,10 @@ ggplot(data, aes(x = Alcohol_Consumption, fill = Heart_Attack)) +
 ggplot(data, aes(x = Family_History_CVD, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Family_History_CVD by Heart_Attack",
-    x = "Family_History_CVD",
+    title = "Family History CVD by Heart Attack",
+    x = "Family History CVD",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -329,10 +329,10 @@ ggplot(data, aes(x = Family_History_CVD, fill = Heart_Attack)) +
 ggplot(data, aes(x = Healthcare_Access, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Healthcare_Access by Heart_Attack",
-    x = "Healthcare_Access",
+    title = "Healthcare Access by Heart Attack",
+    x = "Healthcare Access",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -341,10 +341,10 @@ ggplot(data, aes(x = Healthcare_Access, fill = Heart_Attack)) +
 ggplot(data, aes(x = Rural_or_Urban, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Rural_or_Urban by Heart_Attack",
-    x = "Rural_or_Urban",
+    title = "Rural or Urban by Heart Attack",
+    x = "Rural or Urban",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -353,10 +353,10 @@ ggplot(data, aes(x = Rural_or_Urban, fill = Heart_Attack)) +
 ggplot(data, aes(x = Hospital_Availability, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Hospital_Availability by Heart_Attack",
-    x = "Hospital_Availability",
+    title = "Hospital Availability by Heart Attack",
+    x = "Hospital Availability",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -365,10 +365,10 @@ ggplot(data, aes(x = Hospital_Availability, fill = Heart_Attack)) +
 ggplot(data, aes(x = TCM_Use, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "TCM_Use by Heart_Attack",
-    x = "TCM_Use",
+    title = "TCM_Use by Heart Attack",
+    x = "TCM Use",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -377,10 +377,10 @@ ggplot(data, aes(x = TCM_Use, fill = Heart_Attack)) +
 ggplot(data, aes(x = Employment_Status, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Employment_Status by Heart_Attack",
-    x = "Employment_Status",
+    title = "Employment Status by Heart Attack",
+    x = "Employment Status",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -389,10 +389,10 @@ ggplot(data, aes(x = Employment_Status, fill = Heart_Attack)) +
 ggplot(data, aes(x = Education_Level, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Education_Level by Heart_Attack",
-    x = "Education_Level",
+    title = "Education Level by Heart Attack",
+    x = "Education Level",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -401,10 +401,10 @@ ggplot(data, aes(x = Education_Level, fill = Heart_Attack)) +
 ggplot(data, aes(x = Income_Level, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Income_Level by Heart_Attack",
-    x = "Income_Level",
+    title = "Income Level by Heart Attack",
+    x = "Income Level",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -413,10 +413,10 @@ ggplot(data, aes(x = Income_Level, fill = Heart_Attack)) +
 ggplot(data, aes(x = Chronic_Kidney_Disease, fill = Heart_Attack)) +
   geom_bar(position = "dodge") +
   labs(
-    title = "Chronic_Kidney_Disease by Heart_Attack",
-    x = "Chronic_Kidney_Disease",
+    title = "Chronic Kidney Disease by Heart Attack",
+    x = "Chronic Kidney Disease",
     y = "Count",
-    fill = "Heart_Attack"
+    fill = "Heart Attack"
   ) +
   theme_minimal() 
 ```
@@ -425,9 +425,9 @@ ggplot(data, aes(x = Chronic_Kidney_Disease, fill = Heart_Attack)) +
 ggplot(data, aes(x = Heart_Attack, y = Age)) +
   geom_boxplot() +
   labs(
-    x = "Heart Attack Status",
+    x = "Heart Attack",
     y = "Age",
-    title = "Distribution of Age by Heart Attack Status"
+    title = "Distribution of Age by Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -436,9 +436,9 @@ ggplot(data, aes(x = Heart_Attack, y = Age)) +
 ggplot(data, aes(x = Heart_Attack, y = Blood_Pressure)) +
   geom_boxplot() +
   labs(
-    x = "Heart Attack Status",
+    x = "Heart Attack",
     y = "Blood Pressure",
-    title = "Distribution of Blood Pressure by Heart Attack Status"
+    title = "Distribution of Blood Pressure by Heart Attack"
   ) +
   theme_minimal()
 ```
@@ -447,9 +447,9 @@ ggplot(data, aes(x = Heart_Attack, y = Blood_Pressure)) +
 ggplot(data, aes(x = Heart_Attack, y = CVD_Risk_Score)) +
   geom_boxplot() +
   labs(
-    x = "Heart Attack Status",
+    x = "Heart Attack",
     y = "CVD Risk Scores",
-    title = "Distribution of CVD Risk Scores by Heart Attack Status"
+    title = "Distribution of CVD Risk Scores by Heart Attack"
   ) +
   theme_minimal()
 ```
