@@ -16,7 +16,7 @@ I am interested in myocardial infarction and therefore I choose a dataset contai
 
 The link to the datset is as follows: https://www.kaggle.com/datasets/ankushpanday2/heart-attack-risk-dataset-of-china
 
-# Gaols of the analysis
+# Goals of the analysis
 
 My goal using this dataset is as follows:
 
