@@ -4,10 +4,12 @@ author: "Harsimran Ghai"
 date: "2026-03-02"
 output: html_document
 ---
-
+ Github link: https://github.com/harsimranghai91-eng/CHEP-898-Independent-Analysis-Part-1-.git
+ 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 # Identify a dataset to work on 
 
 I am interested in myocardial infarction and therefore I choose a dataset containing risk factors for myocardial infarction (heart attack) from kaggle website. This dataset is based on chinese population. 
@@ -38,12 +40,10 @@ The stages of analysis are as follows
   - Bar Chart
   - Box Plots
 
-
 ## Binary Logistic Regression
   - Splitting the data into testing (70%) and training data (30%)
   - Building a model using the dependent variable that is heart attack (Binary in nature:0/1) and the predictors variables (see below).
   - Checking the model performance on the testing data (Cross validation).
-
 
 ## Classifiication Tree
 Classification tree model will be built using the below mentioned predictors to predictor heart attack.
